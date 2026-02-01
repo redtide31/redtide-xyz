@@ -5,21 +5,38 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Resources — redtide.xyz</title>
   <meta name="description" content="Security RSS feeds, reports, and reference material." />
+  <meta property="og:title" content="Resources — redtide.xyz" />
+  <meta property="og:description" content="Security RSS feeds, reports, and reference material." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://redtide.xyz/resources/" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon.png">
   <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script defer src="/assets/js/main.js"></script>
 </head>
 <body>
 
-<header class="nav">
-  <div class="container nav-inner">
-    <a class="brand" href="/">
-      <img src="/assets/img/logo.png" alt="redtide logo" width="36" height="36" />
-      <div>
-        <div>redtide.xyz</div>
-        <div class="sub">articles • security • engineering</div>
-      </div>
-    </a>
-  </div>
-</header>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">
+        <img src="/assets/img/logo.png" alt="redtide logo" width="36" height="36" />
+        <div>
+          <div>redtide.xyz</div>
+          <div class="sub">articles • security • engineering</div>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a class="pill" href="/articles/">Articles</a>
+        <a class="pill" href="/about/">About</a>
+        <a class="pill" href="/contact/">Contact</a>
+        <a class="pill" href="/resources/">Resources</a>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme">
+          <span style="font-family:var(--mono); font-size:12px;">☼/☾</span>
+        </button>
+      </nav>
+    </div>
+  </header>
 
 <main class="container section">
   <div class="card wrap">
@@ -49,6 +66,20 @@
     </div>
   </div>
 </main>
+  
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="y"></span> redtide.xyz</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="pill" href="/resources/">Resources</a>
+        <a class="pill" href="/sitemap.xml">Sitemap</a>
+        <a class="pill" href="https://github.com/redtide31" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+    <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  </footer>
 
+</body>
+</html>
 </body>
 </html>
