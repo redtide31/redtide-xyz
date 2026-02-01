@@ -1,31 +1,109 @@
-<h1>Security Reports</h1>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reports — redtide.xyz</title>
+  <meta name="description" content="Annual and investigative security reports worth tracking." />
+  <meta property="og:title" content="Reports — redtide.xyz" />
+  <meta property="og:description" content="Annual and investigative security reports worth tracking." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://redtide.xyz/resources/reports/" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon.png">
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script defer src="/assets/js/main.js"></script>
+</head>
+<body>
 
-<ul>
-  <li>
-    <strong>Verizon Data Breach Investigations Report (DBIR)</strong><br>
-    <a href="https://www.verizon.com/business/resources/reports/dbir/">
-      Annual breach analysis and trends
-    </a>
-  </li>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">
+        <img src="/assets/img/logo.png" alt="redtide logo" width="36" height="36" />
+        <div>
+          <div>redtide.xyz</div>
+          <div class="sub">articles • security • engineering</div>
+        </div>
+      </a>
 
-  <li>
-    <strong>Mandiant M-Trends</strong><br>
-    <a href="https://www.mandiant.com/resources/reports">
-      Incident response and threat intelligence insights
-    </a>
-  </li>
+      <nav class="nav-links">
+        <a class="pill" href="/articles/">Articles</a>
+        <a class="pill" href="/resources/">Resources</a>
+        <a class="pill" href="/about/">About</a>
+        <a class="pill" href="/contact/">Contact</a>
+        <a class="pill" href="/resources/">Resources</a>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme">
+          <span style="font-family:var(--mono); font-size:12px;">☼/☾</span>
+        </button>
+      </nav>
+    </div>
+  </header>
 
-  <li>
-    <strong>Microsoft Digital Defense Report</strong><br>
-    <a href="https://www.microsoft.com/security/business/security-intelligence-report">
-      Global threat landscape analysis
-    </a>
-  </li>
+  <main class="container section">
+    <div class="card wrap">
 
-  <li>
-    <strong>ENISA Threat Landscape</strong><br>
-    <a href="https://www.enisa.europa.eu/topics/threat-risk-management/threats-and-trends">
-      EU-focused strategic threat analysis
-    </a>
-  </li>
-</ul>
+      <div class="breadcrumb">
+        <a href="/">Home</a> /
+        <a href="/resources/">Resources</a> /
+        Reports
+      </div>
+
+      <h1 style="margin:10px 0 8px;">Security Reports</h1>
+      <p class="lead">Annual and investigative reports worth tracking.</p>
+
+      <hr class="sep">
+
+      <h2>Industry Breach &amp; IR Reports</h2>
+      <ul>
+        <li>
+          <strong>Verizon Data Breach Investigations Report (DBIR)</strong><br>
+          <a href="https://www.verizon.com/business/resources/reports/dbir/" rel="noopener noreferrer" target="_blank">
+            Annual breach analysis and trends
+          </a>
+        </li>
+
+        <li>
+          <strong>Mandiant M-Trends</strong><br>
+          <a href="https://www.mandiant.com/resources/reports" rel="noopener noreferrer" target="_blank">
+            Incident response and threat intelligence insights
+          </a>
+        </li>
+      </ul>
+
+      <h2>Platform &amp; Vendor Intelligence</h2>
+      <ul>
+        <li>
+          <strong>Microsoft Digital Defense Report</strong><br>
+          <a href="https://www.microsoft.com/security/business/security-intelligence-report" rel="noopener noreferrer" target="_blank">
+            Global threat landscape analysis
+          </a>
+        </li>
+      </ul>
+
+      <h2>Government &amp; Regional Threat Landscape</h2>
+      <ul>
+        <li>
+          <strong>ENISA Threat Landscape</strong><br>
+          <a href="https://www.enisa.europa.eu/topics/threat-risk-management/threats-and-trends" rel="noopener noreferrer" target="_blank">
+            EU-focused strategic threat analysis
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="y"></span> redtide.xyz</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="pill" href="/resources/">Resources</a>
+        <a class="pill" href="/sitemap.xml">Sitemap</a>
+        <a class="pill" href="https://github.com/redtide31" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+    <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  </footer>
+
+</body>
+</html>
