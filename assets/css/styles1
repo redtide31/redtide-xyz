@@ -1,0 +1,213 @@
+/* =========================================================
+   redtide.xyz — Red Tide / Ocean Theme
+   ========================================================= */
+
+/* ---------- CSS Variables ---------- */
+
+:root {
+  /* Backgrounds */
+  --bg-main: #0b0f14;        /* deep ocean night */
+  --bg-surface: #111827;    /* nav, cards */
+  --bg-muted: #0f172a;
+
+  /* Text */
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+
+  /* Accent: Red Tide */
+  --accent-red: #c1121f;
+  --accent-red-soft: #e63946;
+  --accent-red-muted: #7f1d1d;
+
+  /* Ocean contrast */
+  --accent-ocean: #1e3a5f;
+
+  /* UI */
+  --border-subtle: #1f2937;
+  --radius: 10px;
+}
+
+/* ---------- Global ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* subtle red tide glow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(193, 18, 31, 0.08),
+    transparent 45%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ---------- Links ---------- */
+
+a {
+  color: var(--accent-red-soft);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-red);
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+  max-width: 1100px;
+  padding: 0 1.25rem;
+  margin: 0 auto;
+}
+
+/* ---------- Navigation ---------- */
+
+.nav {
+  background: linear-gradient(
+    180deg,
+    rgba(193, 18, 31, 0.08),
+    rgba(0, 0, 0, 0)
+  );
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.brand {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+.brand img {
+  width: 36px;
+  height: 36px;
+}
+
+.brand .sub {
+  font-size: 0.75rem;
+  color: var(--accent-red-soft);
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* ---------- Pills / Buttons ---------- */
+
+.pill {
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  background: rgba(193, 18, 31, 0.12);
+  border: 1px solid rgba(193, 18, 31, 0.25);
+  color: var(--text-primary);
+}
+
+.pill:hover {
+  background: rgba(193, 18, 31, 0.25);
+  border-color: var(--accent-red);
+}
+
+/* ---------- Headings ---------- */
+
+h1,
+h2,
+h3 {
+  color: #f87171; /* coral red */
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+/* ---------- Articles / Cards ---------- */
+
+article,
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(30, 58, 95, 0.25),
+    rgba(0, 0, 0, 0)
+  );
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+article p {
+  color: var(--text-secondary);
+}
+
+/* ---------- Dividers ---------- */
+
+hr {
+  border: none;
+  height: 1px;
+  margin: 2rem 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-red-soft),
+    transparent
+  );
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 3rem;
+  padding: 2rem 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+  }
+}
