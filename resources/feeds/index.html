@@ -1,86 +1,156 @@
-<h1>Security RSS Feeds</h1>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Security RSS Feeds — redtide.xyz</title>
+  <meta name="description" content="Curated security RSS feeds grouped by purpose." />
+  <meta property="og:title" content="Security RSS Feeds — redtide.xyz" />
+  <meta property="og:description" content="Curated security RSS feeds grouped by purpose." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://redtide.xyz/resources/feeds/" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon.png">
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script defer src="/assets/js/main.js"></script>
+</head>
+<body>
 
-<p class="lead">Curated feeds grouped by purpose.</p>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">
+        <img src="/assets/img/logo.png" alt="redtide logo" width="36" height="36" />
+        <div>
+          <div>redtide.xyz</div>
+          <div class="sub">articles • security • engineering</div>
+        </div>
+      </a>
 
-<h2>News & Analysis</h2>
-<ul>
-  <li>
-    <strong>Krebs on Security</strong><br>
-    <a href="https://krebsonsecurity.com/feed/">https://krebsonsecurity.com/feed/</a>
-  </li>
-</ul>
+      <nav class="nav-links">
+        <a class="pill" href="/articles/">Articles</a>
+        <a class="pill" href="/about/">About</a>
+        <a class="pill" href="/contact/">Contact</a>
+        <a class="pill" href="/resources/">Resources</a>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme">
+          <span style="font-family:var(--mono); font-size:12px;">☼/☾</span>
+        </button>
+      </nav>
+    </div>
+  </header>
 
-<h2>Government Alerts & Advisories</h2>
-<ul>
-  <li>
-    <strong>CISA Cybersecurity Advisories</strong><br>
-    <a href="https://www.cisa.gov/cybersecurity-advisories/rss.xml">
-      https://www.cisa.gov/cybersecurity-advisories/rss.xml
-    </a>
-  </li>
+  <main class="container section">
+    <div class="card wrap">
 
-  <li>
-    <strong>US-CERT Alerts</strong><br>
-    <a href="https://us-cert.cisa.gov/ncas/alerts.xml">
-      https://us-cert.cisa.gov/ncas/alerts.xml
-    </a>
-  </li>
-</ul>
+      <div class="breadcrumb">
+        <a href="/">Home</a> /
+        <a href="/resources/">Resources</a> /
+        RSS Feeds
+      </div>
 
-<h2>Vulnerability Research & Exploits</h2>
-<ul>
-  <li>
-    <strong>Google Project Zero</strong><br>
-    <a href="https://googleprojectzero.blogspot.com/feeds/posts/default">
-      https://googleprojectzero.blogspot.com/feeds/posts/default
-    </a>
-  </li>
+      <h1 style="margin:10px 0 8px;">Security RSS Feeds</h1>
+      <p class="lead">Curated feeds grouped by purpose.</p>
 
-  <li>
-    <strong>Exploit Database</strong><br>
-    <a href="https://www.exploit-db.com/rss.xml">
-      https://www.exploit-db.com/rss.xml
-    </a>
-  </li>
+      <hr class="sep">
 
-  <li>
-    <strong>PortSwigger Research</strong><br>
-    <a href="https://portswigger.net/research/rss">
-      https://portswigger.net/research/rss
-    </a>
-  </li>
-</ul>
+      <h2>News &amp; Analysis</h2>
+      <ul>
+        <li>
+          <strong>Krebs on Security</strong><br>
+          <a href="https://krebsonsecurity.com/feed/" target="_blank" rel="noopener noreferrer">
+            https://krebsonsecurity.com/feed/
+          </a>
+        </li>
+      </ul>
 
-<h2>Threat Intel & Malware</h2>
-<ul>
-  <li>
-    <strong>AlienVault OTX</strong><br>
-    <a href="https://otx.alienvault.com/api/v1/pulses/subscribed/rss">
-      https://otx.alienvault.com/api/v1/pulses/subscribed/rss
-    </a>
-  </li>
+      <h2>Government Alerts &amp; Advisories</h2>
+      <ul>
+        <li>
+          <strong>CISA Cybersecurity Advisories</strong><br>
+          <a href="https://www.cisa.gov/cybersecurity-advisories/rss.xml" target="_blank" rel="noopener noreferrer">
+            https://www.cisa.gov/cybersecurity-advisories/rss.xml
+          </a>
+        </li>
 
-  <li>
-    <strong>Malwarebytes Labs</strong><br>
-    <a href="https://blog.malwarebytes.com/feed/">
-      https://blog.malwarebytes.com/feed/
-    </a>
-  </li>
+        <li>
+          <strong>US-CERT Alerts</strong><br>
+          <a href="https://us-cert.cisa.gov/ncas/alerts.xml" target="_blank" rel="noopener noreferrer">
+            https://us-cert.cisa.gov/ncas/alerts.xml
+          </a>
+        </li>
+      </ul>
 
-  <li>
-    <strong>SANS Internet Storm Center</strong><br>
-    <a href="https://isc.sans.edu/rssfeed.xml">
-      https://isc.sans.edu/rssfeed.xml
-    </a>
-  </li>
-</ul>
+      <h2>Vulnerability Research &amp; Exploits</h2>
+      <ul>
+        <li>
+          <strong>Google Project Zero</strong><br>
+          <a href="https://googleprojectzero.blogspot.com/feeds/posts/default" target="_blank" rel="noopener noreferrer">
+            https://googleprojectzero.blogspot.com/feeds/posts/default
+          </a>
+        </li>
 
-<h2>Cloud Security</h2>
-<ul>
-  <li>
-    <strong>AWS Security Blog</strong><br>
-    <a href="https://aws.amazon.com/blogs/security/feed/">
-      https://aws.amazon.com/blogs/security/feed/
-    </a>
-  </li>
-</ul>
+        <li>
+          <strong>Exploit Database</strong><br>
+          <a href="https://www.exploit-db.com/rss.xml" target="_blank" rel="noopener noreferrer">
+            https://www.exploit-db.com/rss.xml
+          </a>
+        </li>
+
+        <li>
+          <strong>PortSwigger Research</strong><br>
+          <a href="https://portswigger.net/research/rss" target="_blank" rel="noopener noreferrer">
+            https://portswigger.net/research/rss
+          </a>
+        </li>
+      </ul>
+
+      <h2>Threat Intel &amp; Malware</h2>
+      <ul>
+        <li>
+          <strong>AlienVault OTX</strong><br>
+          <a href="https://otx.alienvault.com/api/v1/pulses/subscribed/rss" target="_blank" rel="noopener noreferrer">
+            https://otx.alienvault.com/api/v1/pulses/subscribed/rss
+          </a>
+        </li>
+
+        <li>
+          <strong>Malwarebytes Labs</strong><br>
+          <a href="https://blog.malwarebytes.com/feed/" target="_blank" rel="noopener noreferrer">
+            https://blog.malwarebytes.com/feed/
+          </a>
+        </li>
+
+        <li>
+          <strong>SANS Internet Storm Center</strong><br>
+          <a href="https://isc.sans.edu/rssfeed.xml" target="_blank" rel="noopener noreferrer">
+            https://isc.sans.edu/rssfeed.xml
+          </a>
+        </li>
+      </ul>
+
+      <h2>Cloud Security</h2>
+      <ul>
+        <li>
+          <strong>AWS Security Blog</strong><br>
+          <a href="https://aws.amazon.com/blogs/security/feed/" target="_blank" rel="noopener noreferrer">
+            https://aws.amazon.com/blogs/security/feed/
+          </a>
+        </li>
+      </ul>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="y"></span> redtide.xyz</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="pill" href="/resources/">Resources</a>
+        <a class="pill" href="/sitemap.xml">Sitemap</a>
+        <a class="pill" href="https://github.com/redtide31" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+    <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  </footer>
+
+</body>
+</html>
