@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Leading in Cybersecurity: A Few Thoughts That Matter | redtide.xyz</title>
+
+  <!-- Primary metadata -->
+  <meta name="description" content="Thoughts on cybersecurity leadership under pressure, drawn from experience across high-stakes environments." />
+  <meta name="author" content="T B" />
+
+  <!-- Open Graph / LinkedIn -->
+  <meta property="og:title" content="Leading in Cybersecurity: A Few Thoughts That Matter" />
+  <meta property="og:description" content="Cybersecurity leadership is not about knowing everything — it’s about guiding people through pressure, complexity, and uncertainty." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://redtide.xyz/articles/leading-in-cybersecurity/" />
+  <!-- Optional later -->
+  <!-- <meta property="og:image" content="https://redtide.xyz/assets/img/og-leading-cybersecurity.png" /> -->
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+
+<body>
+
+  <!-- Header / Nav -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">
+        <strong>redtide.xyz</strong>
+      </a>
+      <nav class="nav-links">
+        <a class="pill" href="/articles/">Articles</a>
+        <a class="pill" href="/about/">About</a>
+        <a class="pill" href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+ <!-- Article -->
+<main class="container article">
+  <article class="card wrap">
+
+    <div class="breadcrumb">
+      <a href="/">Home</a> /
+      <a href="/articles/">Articles</a> /
+      Inside MCP Servers
+    </div>
+
+    <h1>Inside MCP Servers</h1>
+
+    <div class="byline">
+      <span><strong></strong></span>
+      <span>October 21, 2025</span>
+    </div>
+
+    <blockquote>
+      MCP servers are the “tool brokers” that let AI assistants safely reach beyond the base model—if you build and govern them correctly.
+    </blockquote>
+
+    <div class="content">
+
+      <h2>Introduction</h2>
+
+      <p>
+        Modern AI assistants often need to fetch live data or execute actions beyond their base model. Model Context Protocol (MCP)
+        servers provide a standardized way to bridge that gap. Think of an MCP server as local middleware or a plugin host for your AI model,
+        a broker that securely exposes tools such as web search, databases, or file systems to the model through standardized calls.
+      </p>
+
+      <p>
+        The AI (the client) connects to the MCP server, which then interfaces with the external service. This isolates third-party API interactions
+        from the model’s core and adds control, auditability, and security. Currently, the heart of MCP is JSON-RPC 2.0, a lightweight protocol for
+        structured remote procedure calls.
+      </p>
+
+      <p>
+        Each request and response follows a simple JSON schema with fields such as <code>jsonrpc</code>, <code>method</code>, <code>params</code>,
+        and <code>id</code>, allowing the AI to use one standard “language” across all tools. The MCP server handles the rest.
+      </p>
+
+      <h2>Deeper look at MCP messages</h2>
+
+      <p>
+        An MCP server translates the JSON-RPC requests from the AI into real API or system actions, then wraps the results back into JSON-RPC before
+        returning them. This creates a controlled, uniform, and sandboxed environment.
+      </p>
+
+      <p><strong>Simplified Flow:</strong></p>
+      <ul>
+        <li><strong>AI → MCP (JSON-RPC):</strong> The AI sends a request.</li>
+        <li><strong>Dispatch:</strong> MCP validates, applies policy, and executes the tool.</li>
+        <li><strong>Outbound call:</strong> MCP performs the real HTTPS or DB action (no JSON-RPC in this one).</li>
+        <li><strong>Return:</strong> MCP wraps results in JSON-RPC and returns them to the AI.</li>
+      </ul>
+
+      <p>
+        This design ensures secrets (like API keys) stay within the MCP and never reach the AI model directly.
+      </p>
+
+      <p>
+        Because MCPs often use local HTTP or WebSocket, their traffic can be inspected in tools like Wireshark.
+      </p>
+
+      <figure class="figure">
+        <!-- Replace src with your real image path -->
+        <img src="/assets/img/mcp-wireshark.png" alt="Wireshark capture showing JSON-RPC request to MCP (left) and corresponding response (right) over loopback." loading="lazy" />
+        <figcaption>
+          Figure 1 – Wireshark capture showing JSON-RPC request to MCP (left) and corresponding MCP server response (right) over the loopback interface.
+        </figcaption>
+      </figure>
+
+      <p><strong>Sample used:</strong></p>
+
+      <pre><code>{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "tools/call",
+  "params": {
+    "name": "brave_web_search",
+    "arguments": {
+      "query": "Thiago Barosa"
+    }
+  }
+}</code></pre>
+
+      <figure class="figure">
+        <!-- Replace src with your real image path -->
+        <img src="/assets/img/mcp-brave-outbound.png" alt="MCP server outbound connection to Brave API." loading="lazy" />
+        <figcaption>
+          Figure 2 – MCP Server outbound connection to Brave API.
+        </figcaption>
+      </figure>
+
+      <p>
+        This visibility is what makes packet inspection and protocol awareness essential for MCP deployments. The payload clearly shows JSON fields such
+        as <code>method</code> and <code>params</code> when not encrypted. When encryption (TLS) is used as it should be—for instance, in remote MCP
+        connections—deep packet inspection (DPI) by a Next-Generation Firewall (NGFW) becomes critical. Without decrypting and inspecting the traffic,
+        the NGFW cannot recognize JSON-RPC structures or apply protocol-specific policies. Proper decryption and inspection are essential to enforce
+        Data Loss Prevention (DLP), detect anomalies, and prevent unauthorized API exposure. Even with DPI enabled, evasion remains theoretically possible.
+      </p>
+
+      <h2>Local vs. Remote MCP Servers</h2>
+
+      <ul>
+        <li><strong>Local MCPs</strong> run on the same host or network segment for low latency and tight control.</li>
+        <li><strong>Remote MCPs</strong> operate mainly over HTTPS, using TLS and authentication for secure transport.</li>
+      </ul>
+
+      <p>
+        In both cases, the external systems they connect to use standard REST or GraphQL APIs, and not JSON-RPC.
+      </p>
+
+      <h2>Dark side of MCP servers</h2>
+
+      <p>
+        Let’s look at how bad actors are leveraging this new vector. In late September 2025, new research revealed a rising threat inside the MCP ecosystem.
+        A team of security analysts examined publicly available MCP servers (around 16,000) and found twelve categories of attacks targeting configuration logic,
+        initialization routines, and tool calls.
+      </p>
+
+      <figure class="figure">
+        <!-- Replace src with your real image path -->
+        <img src="/assets/img/mcp-taxonomy.png" alt="Component-based taxonomy of MCP server attacks (adapted from Zhao et al.)." loading="lazy" />
+        <figcaption>
+          Figure 3 – Component-based taxonomy of MCP Server attacks. Adapted from Zhao et al., <em>When MCP Servers Attack: Taxonomy, Feasibility, and Mitigation</em>.
+        </figcaption>
+      </figure>
+
+      <p>
+        Some attacks achieved a 100% success rate in exploiting connected hosts. These malicious MCPs behave like legitimate ones, using the same protocols and
+        requests, making them almost impossible to distinguish from legitimate useful ones.
+      </p>
+
+      <h3>Key Findings</h3>
+      <ul>
+        <li>Many malicious servers can exfiltrate files, tamper with model responses, or spawn subprocesses.</li>
+        <li>Once an AI client connects, the attacker gains its permissions.</li>
+        <li>Different scanners tested on 120 malicious MCPs missed most cases; one detected only four.</li>
+        <li>No current tool covers all attack categories identified in this study.</li>
+      </ul>
+
+      <p>
+        The reason why detection fails is because JSON-RPC activity is legitimate traffic, endpoint agents and network sensors rarely flag it. If TLS hides
+        the payload, firewalls without DPI see only generic HTTPS. The research confirmed: “No existing auditing system protects against all identified MCP
+        attack vectors.”
+      </p>
+
+      <h2>Securing MCP servers</h2>
+
+      <p>
+        Now that we understand what MCP servers are, how they operate, and the risks, here’s a consolidated checklist to secure them effectively:
+      </p>
+
+      <h3>Network &amp; Transport</h3>
+      <ul>
+        <li>Bind to localhost by default; use private ingress or service mesh for any remote access.</li>
+        <li>Enforce TLS (mTLS for service-to-service) and decrypt JSON-RPC traffic where policy allows for inspection.</li>
+        <li>Apply strict egress allow-lists; only approved domains and APIs should be reachable.</li>
+      </ul>
+
+      <h3>Authentication &amp; Authorization</h3>
+      <ul>
+        <li>Treat MCPs like browser extensions: approve, sign, hash, and pin specific versions.</li>
+        <li>Verify origin, maintain an internal registry, and block unsigned or unverified connectors by default.</li>
+        <li>Require per-client authentication with least privilege per tool, including rate limits and query-cost budgets.</li>
+        <li>Make permissions visible and revocable.</li>
+      </ul>
+
+      <h3>Secrets &amp; Identity Management</h3>
+      <ul>
+        <li>Store credentials in a secure vault, and never in prompts, payloads, or environment variables.</li>
+        <li>Rotate short-lived tokens frequently and redact secrets from all logs or captures.</li>
+      </ul>
+
+      <h3>Data Protection &amp; Sanitization</h3>
+      <ul>
+        <li>Validate inputs and schemas to block injection, traversal, or malformed payloads.</li>
+        <li>Inspect outbound data for PII, secrets, or policy violations.</li>
+        <li>Sanitize all outputs, strip hidden characters, and script fragments before reusing model responses.</li>
+      </ul>
+
+      <h3>Execution &amp; Isolation Controls</h3>
+      <ul>
+        <li>Run each MCP in its own container or sandbox (WASM or VM) with scoped filesystem and network limits.</li>
+        <li>Disallow arbitrary command execution; if required, restrict to predefined safe commands.</li>
+        <li>Use parameterized queries and return only necessary fields.</li>
+      </ul>
+
+      <h3>Visibility, Detection &amp; Governance</h3>
+      <ul>
+        <li>Log key events (tool name, method, argument hash, response size, allow/deny decision).</li>
+        <li>Monitor for runtime anomalies: file writes, new subprocesses, or unexpected network calls.</li>
+        <li>Enable controlled forensic capture for IR and compliance.</li>
+        <li>Integrate MCP oversight into broader vulnerability management and change-control processes.</li>
+      </ul>
+
+      <h2>Final Thoughts</h2>
+
+      <p>
+        MCP servers are amazing bridges between AI and the external world. When built and secured correctly, they enable standardization, control, and visibility,
+        without exposing sensitive data or unmanaged tool access. But as this research shows, trust without verification is not a viable option without incurring
+        serious risk. Security teams must extend their threat models to include the connectors themselves, not just the models they serve.
+      </p>
+
+      <p>
+        Building trust in AI means securing not just the models, but also the connectors that empower them; because when governed properly, MCP servers don’t just
+        link tools; they unlock the full power of integrated, auditable, and accountable AI systems.
+      </p>
+
+      <hr />
+
+      <h2>References</h2>
+      <ol>
+        <li>
+          Help Net Security. <em>When Trusted AI Connections Turn Hostile: Researchers Uncover New Attack Surface in Model Context Protocol Servers.</em>
+          October 16, 2025.
+        </li>
+        <li>
+          Zhao, W., Liu, J., Ruan, B., Li, S., &amp; Liang, Z. (2025). <em>When MCP Servers Attack: Taxonomy, Feasibility, and Mitigation.</em>
+          National University of Singapore and Peking University.
+        </li>
+        <li>
+          OpenAI Developer Docs. <em>Model Context Protocol (MCP) Specification – JSON-RPC over WebSocket.</em>
+        </li>
+        <li>
+          JSON-RPC Working Group. <em>JSON-RPC 2.0 Specification.</em>
+        </li>
+        <li>
+          OWASP Foundation. <em>OWASP Top 10 for LLM Applications (LLM01–LLM10).</em> 2024.
+        </li>
+        <li>
+          Center for Internet Security (CIS). <em>CIS Controls v8 - Control 13: Network Monitoring and Defense.</em>
+        </li>
+      </ol>
+
+    </div>
+  </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="y"></span> redtide.xyz</div>
+      <div>
+        <a class="pill" href="/articles/">All articles</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
+
+
+
