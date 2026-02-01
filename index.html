@@ -1,1 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>redtide.xyz — Articles, notes, and security thinking</title>
+  <meta name="description" content="redtide.xyz — longform articles and practical security notes." />
+  <meta property="og:title" content="redtide.xyz" />
+  <meta property="og:description" content="Longform articles and practical security notes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://redtide.xyz/" />
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script defer src="/assets/js/main.js"></script>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">
+        <img src="/assets/img/logo.svg" alt="redtide logo" />
+        <div>
+          <div>redtide.xyz</div>
+          <div class="sub">articles • security • engineering</div>
+        </div>
+      </a>
 
+      <nav class="nav-links">
+        <a class="pill" href="/articles/">Articles</a>
+        <a class="pill" href="/about/">About</a>
+        <a class="pill" href="/contact/">Contact</a>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Toggle theme" title="Toggle theme">
+          <span style="font-family:var(--mono); font-size:12px;">☼/☾</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="card hero-left">
+          <div class="kicker"><span class="dot"></span> Publishing hub for LinkedIn longform + canonical links</div>
+          <h1>Modern security writing, built for sharing.</h1>
+          <p class="lead">
+            This site is the canonical home for articles shared on LinkedIn. Each post has a stable URL, clean layout,
+            and space for technical artifacts, diagrams, and updates.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="/articles/">Read articles</a>
+            <a class="pill" href="https://github.com/redtide31" rel="noopener noreferrer">GitHub</a>
+          </div>
+          <hr class="sep">
+          <div class="meta">
+            <span class="tag">canonical-first</span>
+            <span class="tag">github-pages</span>
+            <span class="tag">fast-static</span>
+          </div>
+        </div>
+
+        <div class="card hero-right">
+          <img src="/assets/img/hero.svg" alt="Abstract hero illustration" />
+          <div class="small">
+            <h3>Featured</h3>
+            <p><a href="/articles/first-article/">Example article layout (replace with your real post)</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <div class="card mini col-8">
+          <h2>Latest</h2>
+          <p>Start with one “flagship” LinkedIn article, then expand into a clean archive.</p>
+          <hr class="sep">
+          <div class="meta">
+            <div>
+              <div><strong><a href="/articles/first-article/">Title: Replace this with your first post</a></strong></div>
+              <div style="color:var(--muted); font-size:13px;">Jan 31, 2026 • 8–12 min read</div>
+            </div>
+            <span class="tag">article</span>
+          </div>
+        </div>
+
+        <div class="card mini col-4">
+          <h2>What you’ll add next</h2>
+          <ul>
+            <li>Real avatar + bio</li>
+            <li>Article thumbnails</li>
+            <li>RSS feed (optional)</li>
+            <li>Analytics (optional)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="y"></span> redtide.xyz</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="pill" href="/sitemap.xml">Sitemap</a>
+        <a class="pill" href="https://github.com/redtide31" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+    <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  </footer>
+</body>
+</html>
