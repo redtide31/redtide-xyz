@@ -6,7 +6,10 @@
   <title>About — redtide.xyz</title>
   <meta name="description" content="About redtide" />
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/css/styles.css" />
+
+  <!-- FIX: correct stylesheet filename -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
   <script defer src="/assets/js/main.js"></script>
 </head>
 <body>
@@ -33,22 +36,34 @@
   <main class="container section">
     <div class="grid">
       <div class="card mini col-4" style="text-align:center;">
-        <img src="/assets/img/avatar.svg" alt="avatar" style="width:100%; max-width:240px; height:auto; border-radius:28px; border:1px solid var(--border);" />
+        <img src="/assets/img/avatar.svg" alt="avatar"
+             style="width:100%; max-width:240px; height:auto; border-radius:28px; border:1px solid var(--border);" />
         <h2 style="margin:14px 0 6px;">redtide</h2>
         <p style="margin:0;">Security leadership • engineering • writing</p>
         <hr class="sep">
-        <p style="margin:0;"><a class="pill" href="https://github.com/redtide31" rel="noopener noreferrer">GitHub</a></p>
+        <p style="margin:0;">
+          <a class="pill" href="https://github.com/redtide31" rel="noopener noreferrer">GitHub</a>
+        </p>
       </div>
 
       <div class="card mini col-8">
         <div class="breadcrumb"><a href="/">Home</a> / About</div>
         <h1 style="margin:10px 0 8px;">About</h1>
-        <p>
-          Replace this with your short bio. Keep it direct: what you do, what you focus on, and what people can expect here.
-        </p>
+
+        <!-- FIX: render bio as readable blocks -->
+        <p>Defense is the through-line.</p>
+
+        <p>Systems. People. Pressure. Failure. Resilience.</p>
+
+        <p>Cyber defense is the current domain — not the final one.</p>
+
+        <p>This site documents the study.</p>
+
+        <p><strong>Always a student.</strong></p>
+
         <h2>What this site is</h2>
         <ul>
-          <li>Canonical links to LinkedIn longform posts</li>
+          <li>Canonical links to personal articles</li>
           <li>A clean archive you control (no platform lock-in)</li>
           <li>Room for technical details (code, diagrams, references)</li>
         </ul>
